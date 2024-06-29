@@ -1,4 +1,4 @@
-# main.py
+# app.py
 import streamlit as st
 
 # Simple rule-based chatbot logic
