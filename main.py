@@ -6,14 +6,17 @@ openai.api_key = 'sk-proj-JPVUMiURK1tUstXZ6ZdPT3BlbkFJtzqCGWlKCreutdYQroiF'
 
 # Function to get response from OpenAI GPT-3.5
 def get_response(user_input):
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": user_input}
-        ]
-    )
-    return response.choices[0].message['content'].strip()
+    try:
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": user_input}
+            ]
+        )
+        return response.choices[0].message['content'].strip()
+    except Exception as e:
+        return str(e)
 
 st.title("AI Chatbot")
 st.write("Welcome! Type something to start the conversation.")
