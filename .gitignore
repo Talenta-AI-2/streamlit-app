@@ -10,3 +10,4 @@ VENV/
 .idea/
 .vscode/
 *.egg-info/
+echo "config.js" >> .gitignore
