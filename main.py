@@ -1,22 +1,25 @@
-# main.py
 import streamlit as st
+import openai
 
-# Simple rule-based chatbot logic
+# Set your OpenAI API key here
+openai.api_key = 'sk-proj-JPVUMiURK1tUstXZ6ZdPT3BlbkFJtzqCGWlKCreutdYQroiF'
+
+# Function to get response from OpenAI GPT-3.5
 def get_response(user_input):
-    if "hello" in user_input.lower():
-        return "Hello! How can I assist you today?"
-    elif "how are you" in user_input.lower():
-        return "I'm just a bunch of code, but thanks for asking! How can I help you?"
-    elif "bye" in user_input.lower():
-        return "Goodbye! Have a great day!"
-    else:
-        return "I'm sorry, I don't understand that. Can you please rephrase?"
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": user_input}
+        ]
+    )
+    return response.choices[0].message['content'].strip()
 
-st.title("Simple Chatbot")
+st.title("AI Chatbot")
 st.write("Welcome! Type something to start the conversation.")
 
 user_input = st.text_input("You: ")
 
 if user_input:
     response = get_response(user_input)
-    st.text_area("Chatbot:", value=response, height=100, max_chars=None, key=None)
+    st.text_area("Chatbot:", value=response, height=200, max_chars=None, key=None)
