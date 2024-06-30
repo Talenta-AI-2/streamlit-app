@@ -2,7 +2,7 @@ import streamlit as st
 import openai
 
 # Set your OpenAI API key here
-openai.api_key = 'sk-proj-JPVUMiURK1tUstXZ6ZdPT3BlbkFJtzqCGWlKCreutdYQroiF'
+openai.api_key = 'YOUR_OPENAI_API_KEY'
 
 # Function to get response from OpenAI GPT-3.5
 def get_response(user_input):
